@@ -1,0 +1,229 @@
+# ---
+# jupyter:
+#   jupytext:
+#     cell_metadata_filter: -all
+#     formats: ipynb,py:percent
+#     text_representation:
+#       extension: .py
+#       format_name: percent
+#       format_version: '1.3'
+#       jupytext_version: 1.11.1
+#   kernelspec:
+#     display_name: b37
+#     language: python
+#     name: b37
+# ---
+
+# %%
+"""
+6/16/21
+
+diego.aliaga at helsinki dot fi
+"""
+
+# %% [markdown]
+# interactive import
+
+# %%
+from IPython import get_ipython
+_ipython = get_ipython()
+if _ipython is not None:
+    _magic = _ipython.magic
+    _magic( 'load_ext autoreload' )
+    _magic( 'autoreload 2' )
+
+# %%
+from npf_analyzer3 import *
+import npf_analyzer3 as np3
+import os
+import xarray as xr
+import AppearanceModeFit as Amf
+
+# %%
+ddd = ''
+# %%
+try:
+    here_path = os.path.dirname(os.path.abspath(__file__))
+except NameError:
+    here_path = os.path.dirname(os.path.abspath(np3.__file__))
+
+    p = os.path.join( here_path , ddd )
+    ip_darray = np3.fu.open_sum(p)
+    ip_darray = np3.fu.get_treated_da(ip_darray)
+
+# %%
+ip_darray
+# %%
+
+
+# %%
+def open_darray( pp ):
+    p = os.path.join( here_path , pp )
+    ip_darray = np3.fu.open_sum(p)
+    
+    ip_darray = np3.fu.get_treated_da(ip_darray)
+    
+    
+    da = np3.fu.set_secs_dim(ip_darray)
+    da['tempK'] = xr.zeros_like(da['secs']) + 273
+    da['presP'] = xr.zeros_like(da['secs']) + 532000
+    
+    return da
+
+# %%
+p1 = 'example_data/lev2_NAISp20180525np.sum'
+da1 = open_darray(p1)
+
+# %%
+p2 = 'example_data/lev2_NAISp20180527np.sum'
+da2 = open_darray(p2)
+
+# %%
+root_path = '/tmp/npf'
+os.makedirs(root_path, exist_ok=True)
+
+# %%
+self = np3.GuiNpf()
+
+# %%
+self.gui_glw_c.setMinimumHeight(800)
+
+# %%
+self.gui_scroll_c.setFixedHeight( 200 )
+
+
+
+# %%
+self.set_ip_mode('ion', 'neg')
+self.set_ip_data_array( da1 )
+
+# %%
+self.plot_ip_size_dist()
+self.set_project_path(root_path)
+
+# %%
+patt = "/Volumes/mbProD/bolivia_campaign_data/NAIS3_CHC_processed2021/level2/data_out/lev2_NAISn*nds.sum"
+self.set_gui_open_combo_box(patt)
+
+
+
+
+# %%
+def set_from_path(p):
+    global ddd 
+    ddd = p 
+    d = open_darray(p)
+    self.set_ip_data_array( d )
+    self.plot_ip_size_dist()
+
+
+# %%
+self.gui_combo_open.currentTextChanged.connect(set_from_path)
+
+# %%
+set_from_path('/Volumes/mbProD/bolivia_campaign_data/NAIS3_CHC_processed2021/level2/data_out/lev2_NAISp20171203np.sum')
+
+# %%
+open_darray(ddd)
+
+# %%
+self.gui_glw_c.range.setHeight(800)
+
+# %%
+self.gui_glw_c.resizeEvent(None)
+
+# %%
+self.gui_glw_c.range
+
+# %%
+# sa = self.get_smooth_ip_data()
+# ra = self.ip_darray
+# pts = np3.get_roi_pol_coords(self.gui_ROI_a)
+# sd = self.project_path_appearance
+# amf = Amf.AppearanceModeFit(ra,sa,pts,sd)
+
+# %%
+from pyqtgraph.Qt import QtWidgets
+
+# %%
+dia = QtWidgets.QComboBox()
+
+# %%
+import glob
+
+# %%
+files = glob.glob("/Volumes/mbProD/bolivia_campaign_data/NAIS3_CHC_processed2021/level2/data_out/lev2_NAISp*np.sum")
+
+# %%
+dia.addItems(files)
+
+# %%
+self.gui__lw_d.addWidget(dia,colspan=4)
+
+# %%
+self.gui_plot_a.plot(x,y)
+
+# %%
+color = (200,0,200)
+
+        # %%
+        dff = self.fits_AMF.df
+#         color = self.appea_color
+        x = dff[ 'x0' ].values.astype( float )
+        ly = dff.reset_index()[ 'lDp' ].values.astype( float )
+        y = 10 ** ly
+    
+        curve = self.gui_plot_a.plot( x , y ,
+                              pen=color ,
+                              symbolBrush=color ,
+                              symbolPen='w' ,
+                              symbol='x' ,
+                              symbolSize=2 ,
+                              name="appearance" )
+        self.appea_curve = curve
+
+# %%
+self.gui_plot_a.removeItem(None)
+
+# %%
+color  = [200,200,200]
+dff    = amf.df
+g_lay_3= self.gui_glw_c
+par    = self.ip_darray
+parG   = self.get_smooth_ip_data()
+# pls    = []
+fun    = amf.fit_function
+pars   = ['x0','L','k','D']
+
+# %%
+np3.plot_multicurves(
+    color  = color   ,
+    dff    = dff     ,
+    g_lay_3= g_lay_3 ,
+    par    = par     ,
+    parG   = parG    ,
+    pls    = pls     ,
+    fun    = fun     ,
+    pars   = pars    ,  
+)
+
+# %%
+
+x = dff['x0']
+y = 10**dff.index
+
+# %%
+import matplotlib.pyplot as plt
+plt.plot(x,y)
+
+# %%
+for i,r in dff.iterrows():
+    plt.subplots()
+    plt.plot(r['x'],r['y'])
+    plt.plot(r['x_raw'],r['y_raw'])
+    plt.axvline(r['x0'])
+
+# %%
+parG.plot()
+
+# %%
