@@ -3,8 +3,8 @@
 
 diego.aliaga at helsinki dot fi
 """
-from pyqtgraph import GraphicsLayoutWidget
-import pyqtgraph as pg
+from pyqtgraph_back import GraphicsLayoutWidget
+import pyqtgraph_back as pg
 from .. import shared_data
 from ..funs import set_image_data , open_darray
 
@@ -53,6 +53,7 @@ class BananaPlot( GraphicsLayoutWidget ):
         da1 = open_darray( p1 )
         shared_data.banana_data = da1
         set_image_data( da1 , self.image_item , autoLevels=True )
+
     
     
     def plot_from_data( self , da1 ):
@@ -82,5 +83,5 @@ class BananaPlot( GraphicsLayoutWidget ):
         da[ 'presP' ] = xr.zeros_like( da[ 'secs' ] ) + 532000
 
         da1 = da.transpose( 'secs' , 'lDp' )
-        set_image_data( da1 , self.image_item , autoLevels=True )
+        set_image_data( da1 , self.image_item , autoLevels=False )
 

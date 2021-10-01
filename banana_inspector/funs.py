@@ -7,9 +7,9 @@ diego.aliaga at helsinki dot fi
 import psd_ftools.funs as pfu
 import numpy as np
 import pandas as pd
-import pyqtgraph as pg
-import xarray as xr
 from PyQt5 import QtCore
+import xarray as xr
+import pyqtgraph_back as pg
 
 def open_sum( sum_path ):
     ds = pfu.open_sum2ds( sum_path )
@@ -19,6 +19,7 @@ def open_sum( sum_path ):
 def get_treated_da( ds ):
     # todo make sure the da is better
     # da should not have nans
+    # we use log10
     da = ds[ pfu.DNDLDP ]
     rt = 5  # averaging time in minutes
     len_ldp = 0.0646  # delta lDp
@@ -41,7 +42,7 @@ def get_treated_da( ds ):
     
     dr2 = dr2.interpolate_na( dim='time' , limit=2 )
     
-    assert dr2.isnull().sum().item() == 0
+    # assert dr2.isnull().sum().item() == 0
     
     dr2 = dr2.where( dr2 > 0 , -10 )
 

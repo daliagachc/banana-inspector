@@ -32,8 +32,8 @@ else:
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-import pyqtgraph as pg
-import pyqtgraph.Qt.QtGui as QtGui
+import pyqtgraph_back as pg
+import pyqtgraph_back.Qt.QtGui as QtGui
 # import PyQt5.QtWidgets.QMainWindow
 # from pyqtgraph.dockarea import *
 

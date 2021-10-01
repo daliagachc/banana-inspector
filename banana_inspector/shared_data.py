@@ -8,12 +8,12 @@ diego.aliaga at helsinki dot fi
 all data and values that need to be communicated between the
 qt windows are stored here."""
 
-import pyqtgraph.dockarea
+import pyqtgraph_back.dockarea
 
 
 
 banana_data = None
 """maybe we dont need this anymore"""
 
-dock_area: pyqtgraph.dockarea.DockArea = None
+dock_area: pyqtgraph_back.dockarea.DockArea = None
 '''share dock area. new docks should be built here'''

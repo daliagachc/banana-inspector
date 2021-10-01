@@ -1,0 +1,41 @@
+pos: (0.0, 0.0)
+bypass: False
+terminals:
+    dataIn:
+        io: 'in'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+    dataOut:
+        io: 'out'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+nodes: [{'class': 'OpenFileNode', 'name': 'OpenFileNode.0', 'pos': (88.71199999999999, -10.179999999999978), 'state': {'pos': (88.71199999999999, -10.179999999999978), 'bypass': False, 'ctrl': {'input file is: ': 'sadf', 'set dir': '/Users/aliaga/py-packs/banana-inspector-parent/banana-inspector/banana_inspector'}}}]
+connects: []
+inputNode:
+    pos: (-150.0, 0.0)
+    bypass: False
+    terminals:
+        dataIn:
+            io: 'out'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False
+outputNode:
+    pos: (300.0, 0.0)
+    bypass: False
+    terminals:
+        dataOut:
+            io: 'in'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False

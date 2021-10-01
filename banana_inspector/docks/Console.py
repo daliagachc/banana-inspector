@@ -4,9 +4,9 @@
 diego.aliaga at helsinki dot fi
 """
 
-from pyqtgraph import LayoutWidget
-import pyqtgraph as pg
-import pyqtgraph.console
+from pyqtgraph_back import LayoutWidget
+import pyqtgraph_back as pg
+import pyqtgraph_back.console
 import numpy as np
 from .. import shared_data as sd
 from .. import funs
@@ -22,7 +22,7 @@ class Console(LayoutWidget):
                 'funs': funs
                 }
         text = ''
-        console = pyqtgraph.console.ConsoleWidget(
+        console = pyqtgraph_back.console.ConsoleWidget(
                 namespace=namespace , text=text )
         
         self.addWidget( console )

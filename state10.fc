@@ -1,0 +1,41 @@
+pos: (0.0, 0.0)
+bypass: False
+terminals:
+    dataIn:
+        io: 'in'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+    dataOut:
+        io: 'out'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+nodes: [{'class': 'PeelNode', 'name': 'PeelNode.0', 'pos': (-61.88320000000007, -94.85199999999998), 'state': {'pos': (-61.88320000000007, -94.85199999999998), 'bypass': False, 'ctrl': {'ysigma': 0.0, 'points': '[\n[1527255661.3182\t,-8.1036\t],\n[1527258435.7496\t,-7.7154\t],\n[1527260773.3204\t,-7.5413\t],\n[1527265892.9263\t,-7.2841\t],\n[1527281324.5117\t,-7.2405\t],\n[1527287560.6804\t,-7.5452\t],\n[1527277735.4960\t,-7.7390\t],\n[1527273982.5846\t,-7.9725\t],\n[1527273738.7432\t,-8.2298\t],\n[1527274410.8419\t,-8.4909\t],\n[1527254987.0182\t,-8.4790\t],\n[1527255757.6761\t,-8.3524\t],\n]'}}}, {'class': 'BananaPlotNode', 'name': 'BananaPlotNode.0', 'pos': (108.67039999999992, 0.7063999999999879), 'state': {'pos': (108.67039999999992, 0.7063999999999879), 'bypass': False, 'ctrl': {'example data': True}}}]
+connects: [('PeelNode.0', 'peel_roi', 'BananaPlotNode.0', 'peel_roi')]
+inputNode:
+    pos: (-150.0, 0.0)
+    bypass: False
+    terminals:
+        dataIn:
+            io: 'out'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False
+outputNode:
+    pos: (300.0, 0.0)
+    bypass: False
+    terminals:
+        dataOut:
+            io: 'in'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False

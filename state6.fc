@@ -1,0 +1,41 @@
+pos: (0.0, 0.0)
+bypass: False
+terminals:
+    dataIn:
+        io: 'in'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+    dataOut:
+        io: 'out'
+        multi: False
+        optional: False
+        renamable: False
+        removable: False
+        multiable: False
+nodes: [{'class': 'OpenFileNode', 'name': 'OpenFileNode.0', 'pos': (-137.4150734542641, -111.74890399420741), 'state': {'pos': (-137.4150734542641, -111.74890399420741), 'bypass': False, 'ctrl': {'set dir': '', 'set file': ''}}}, {'class': 'OpenSumFileNode', 'name': 'OpenSumFileNode.0', 'pos': (1.083598432978306, -90.51488989950204), 'state': {'pos': (1.083598432978306, -90.51488989950204), 'bypass': False, 'ctrl': {}}}, {'class': 'GaussianFilterNode', 'name': 'GaussianFilterNode.0', 'pos': (97.19157662232533, -2.3305760732742726), 'state': {'pos': (97.19157662232533, -2.3305760732742726), 'bypass': False, 'ctrl': {'xsigma': 3.0, 'ysigma': 1.0}}}, {'class': 'BananaPlotNode', 'name': 'BananaPlotNode.1', 'pos': (236.18602725259353, 44.26519937404029), 'state': {'pos': (236.18602725259353, 44.26519937404029), 'bypass': False, 'ctrl': {}}}, {'class': 'BasicPeelNode', 'name': 'BasicPeelNode.0', 'pos': (453.0922095467013, -82.55192146068467), 'state': {'pos': (453.0922095467013, -82.55192146068467), 'bypass': False, 'ctrl': {'points': '[[0,0],[1,2]]'}}}]
+connects: [('OpenSumFileNode.0', 'data_out', 'GaussianFilterNode.0', 'dataIn'), ('OpenSumFileNode.0', 'data_out', 'Output', 'dataOut'), ('OpenFileNode.0', 'file_out', 'OpenSumFileNode.0', 'path_in'), ('GaussianFilterNode.0', 'dataOut', 'BananaPlotNode.1', 'dataIn'), ('GaussianFilterNode.0', 'dataOut', 'BasicPeelNode.0', 'data_array'), ('BananaPlotNode.1', 'bnn_plot', 'BasicPeelNode.0', 'banana_plot')]
+inputNode:
+    pos: (-150.0, 0.0)
+    bypass: False
+    terminals:
+        dataIn:
+            io: 'out'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False
+outputNode:
+    pos: (177.33280688980147, -122.06292122295622)
+    bypass: False
+    terminals:
+        dataOut:
+            io: 'in'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False

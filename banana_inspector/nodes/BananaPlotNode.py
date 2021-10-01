@@ -3,8 +3,8 @@
 
 diego.aliaga at helsinki dot fi
 """
-import pyqtgraph
-from pyqtgraph.flowchart.library.common import CtrlNode
+import pyqtgraph_back
+from pyqtgraph_back.flowchart.library.common import CtrlNode
 
 from banana_inspector import shared_data
 from banana_inspector.plotters.BananaPlot import BananaPlot
@@ -23,12 +23,15 @@ class BananaPlotNode( CtrlNode ):
             #    'bounds': [ 0.0 , None ] }) ,
             # ('input_dir' , 'text' ,
             #  { 'value': './' })
+
+        ('example data', 'check', {'checked': False})
             ]
     
     def __init__( self , name ):
         ## Define the input / output terminals available on this node
         terminals = {
                 'dataIn': dict( io='in' ) ,
+                'peel_roi': dict( io='in' ) ,
                 # each terminal needs at least a name and
                 'bnn_plot': dict( io='out' ) ,
                 # to specify whether it is input or output
@@ -38,7 +41,7 @@ class BananaPlotNode( CtrlNode ):
         CtrlNode.__init__( self , name , terminals=terminals )
         
         # lets create a dock
-        dock = pyqtgraph.dockarea.Dock(
+        dock = pyqtgraph_back.dockarea.Dock(
                 closable=True ,
                 size=(100 , 1000) ,
                 name=name
@@ -51,9 +54,15 @@ class BananaPlotNode( CtrlNode ):
         
         self.dock = dock
         self.bnn_plot = bnn_plot
+        self.example_plotted = False
     
     
-    def process( self , dataIn , display=True ):
+    def process( self ,
+                 dataIn=None,
+                 peel_roi=None ,
+                 display=True ,
+                 ):
+
         # CtrlNode has created self.ctrls, which is a dict containing {
         # ctrlName: widget}
         # sigma = self.ctrls[ 'sigma' ].value()
@@ -67,6 +76,16 @@ class BananaPlotNode( CtrlNode ):
         # print( 'i am a bnn', text)
         # output = None
         # return { 'dataOut': output }
-        self.bnn_plot.plot_from_sum_data( dataIn )
+
+        if self.ctrls['example data'].isChecked():
+            if self.example_plotted is False:
+                self.bnn_plot.plot_example()
+                self.example_plotted = True
+        elif dataIn:
+            self.bnn_plot.plot_from_sum_data( dataIn )
+
+        if peel_roi:
+            if peel_roi.plot_item != self.bnn_plot.plot_item:
+                peel_roi.draw_me_in_plot(self.bnn_plot.plot_item)
         
         return {'bnn_plot':self.bnn_plot}

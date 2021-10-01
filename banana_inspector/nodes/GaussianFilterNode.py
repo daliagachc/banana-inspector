@@ -3,21 +3,21 @@
 this is a barebones sum files representation in xarray
 diego.aliaga at helsinki dot fi
 """
-import pyqtgraph
-from pyqtgraph import GraphicsLayoutWidget
-import pyqtgraph as pg
+import pyqtgraph_back
+from pyqtgraph_back import GraphicsLayoutWidget
+import pyqtgraph_back as pg
 from .. import shared_data
 # from ..funs import set_image_data , open_darray
 
 from .. import funs
 
-import pyqtgraph.dockarea
+import pyqtgraph_back.dockarea
 
-from pyqtgraph.flowchart import Flowchart , Node
-import pyqtgraph.flowchart.library as fclib
+from pyqtgraph_back.flowchart import Flowchart , Node
+import pyqtgraph_back.flowchart.library as fclib
 # from pyqtgraph.flowchart.library.common import CtrlNode
 from ..pyqtgraph_bnn_extensions import CtrlNodeExt as CtrlNode
-from pyqtgraph.Qt import QtGui , QtCore
+from pyqtgraph_back.Qt import QtGui , QtCore
 # import pyqtgraph as pg
 import numpy as np
 
@@ -25,8 +25,8 @@ class GaussianFilterNode( CtrlNode ):
     """Gaussian smoothing filter."""
     nodeName = 'GaussianFilterNode'
     uiTemplate = [
-            ('xsigma' , 'doubleSpin' , { 'min': 0 , 'max': 1000000 }),
-            ( 'ysigma' , 'doubleSpin' , { 'min': 0 , 'max': 1000000 } )
+            ('xsigma' , 'spin' , { 'min': 0.1 , 'max': 100 }),
+            ( 'ysigma' , 'spin' , { 'min': 0.1 , 'max': 100 } )
             ]
 
     def __init__( self , name ):

@@ -9,20 +9,20 @@ import os.path
 
 # noinspection PyUnresolvedReferences
 import psd_ftools.funs as pfu
-import pyqtgraph as pg
+import pyqtgraph_back as pg
 import funs as fu
 
 # noinspection PyUnresolvedReferences
-from pyqtgraph.Qt import QtCore , QtGui
+from pyqtgraph_back.Qt import QtCore , QtGui
 # noinspection PyUnresolvedReferences
 import numpy as np
 # noinspection PyUnresolvedReferences
 import pandas as pd
 # noinspection PyUnresolvedReferences
 import xarray as xr
-import pyqtgraph.dockarea
-import pyqtgraph.console
-import pyqtgraph.widgets.SpinBox
+import pyqtgraph_back.dockarea
+import pyqtgraph_back.console
+import pyqtgraph_back.widgets.SpinBox
 import AppearanceModeFit as Amf
 
 
@@ -38,14 +38,14 @@ class GuiNpf:
         self.gui_qapp = pg.mkQApp( 'NPF event analyzer' )
         # noinspection PyUnresolvedReferences
         self.gui_win = QtGui.QMainWindow()
-        self.gui_area = pyqtgraph.dockarea.DockArea()
+        self.gui_area = pyqtgraph_back.dockarea.DockArea()
         
         ## docks
-        self.gui_dock_a = pyqtgraph.dockarea.Dock( 'dock a' )
-        self.gui_dock_b = pyqtgraph.dockarea.Dock( 'dock b' )
-        self.gui_dock_c = pyqtgraph.dockarea.Dock( 'dock c' )
-        self.gui_dock_d = pyqtgraph.dockarea.Dock( 'dock d' )
-        self.gui_dock_e = pyqtgraph.dockarea.Dock( 'dock e' )
+        self.gui_dock_a = pyqtgraph_back.dockarea.Dock('dock a')
+        self.gui_dock_b = pyqtgraph_back.dockarea.Dock('dock b')
+        self.gui_dock_c = pyqtgraph_back.dockarea.Dock('dock c')
+        self.gui_dock_d = pyqtgraph_back.dockarea.Dock('dock d')
+        self.gui_dock_e = pyqtgraph_back.dockarea.Dock('dock e')
         
         ## graphical layouts widgets
         self.gui_glw_a = pg.GraphicsLayoutWidget()
@@ -72,7 +72,7 @@ class GuiNpf:
         
         # console
         # noinspection PyTypeChecker
-        self.gui_console: pyqtgraph.console.ConsoleWidget = None
+        self.gui_console: pyqtgraph_back.console.ConsoleWidget = None
         
         # gui buttons
         # to avoid annoying message
@@ -95,7 +95,7 @@ class GuiNpf:
         
         
         # spins
-        _sb = pyqtgraph.widgets.SpinBox.SpinBox
+        _sb = pyqtgraph_back.widgets.SpinBox.SpinBox
         # noinspection PyTypeChecker
         self.gui_spin_dp_mn: _sb = None
         # noinspection PyTypeChecker
@@ -351,7 +351,7 @@ class GuiNpf:
     def init_gui_console_e( self ):
         namespace = { 'pg': pg , 'np': np , 'app': self }
         text = ''
-        self.gui_console = pyqtgraph.console.ConsoleWidget(
+        self.gui_console = pyqtgraph_back.console.ConsoleWidget(
                 namespace=namespace , text=text )
         self.gui__lw_e.addWidget( self.gui_console )
 

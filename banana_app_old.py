@@ -4,12 +4,12 @@
 diego.aliaga at helsinki dot fi
 """
 
-from PyQt5 import QtWidgets , uic
-from banana_inspector import BananaMainWindow
+from PyQt5 import QtWidgets
+from banana_inspector.ui import BananaMainWindow
 # from pyqtgraph import PlotWidget , plot
 # import pyqtgraph as pg
 import sys  # We need sys so that we can pass argv to QApplication
-import os
+
 
 class MainWindow( QtWidgets.QMainWindow ):
     

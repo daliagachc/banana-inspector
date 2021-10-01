@@ -14,8 +14,8 @@ if _ipython is not None:
     _magic = _ipython.magic
     # _magic( 'load_ext autoreload' )
     # _magic( 'autoreload 2' )
-    _magic('gui qt5')
     print('ipython')
+    _magic('gui qt')
     INTERACTIVE = True
     # noinspection PyStatementEffect
 #     self.gui_qapp
@@ -24,38 +24,39 @@ else:
     # self.gui_qapp.exec_()
     print('not interactive')
 
-from pyqtgraph.flowchart import Flowchart
-from pyqtgraph.Qt import QtGui, QtCore
-import pyqtgraph as pg
-import pyqtgraph.dockarea
+from pyqtgraph_back.flowchart import Flowchart
+from pyqtgraph_back.Qt import QtGui, QtCore
+import pyqtgraph_back as pg
+import pyqtgraph_back.dockarea
 import numpy as np
-import pyqtgraph.metaarray as metaarray
-import PyQt6.QtWidgets
+import pyqtgraph_back.metaarray as metaarray
+import PyQt5.QtWidgets
 # from banana_inspector.docks.BananaPlot import BananaPlotNode
 # from banana_inspector.docks.OpenFileNode import OpenFileNode
 from banana_inspector import shared_data
 from banana_inspector import pyqtgraph_bnn_extensions as exts
 
-exts.register_nodes()
 
 TITLE = "The Banana Inspector"
+
 app = pg.mkQApp(TITLE)
+exts.register_nodes()
 
 ## Create main window with grid layout
 # win:PyQt5.QtWidgets.QMainWindow = QtGui.QMainWindow()
-win: PyQt6.QtWidgets.QMainWindow = PyQt6.QtWidgets.QMainWindow()
+win: PyQt5.QtWidgets.QMainWindow = PyQt5.QtWidgets.QMainWindow()
 win.setWindowTitle(TITLE)
-win.setBaseSize(1600, 800)
+win.setBaseSize(1200, 600)
 # cw:PyQt5.QtWidgets.QWidget = QtGui.QWidget()
 # cw:PyQt5.QtWidgets.QWidget = PyQt5.QtWidgets.QWidget()
 
-dock_area = pyqtgraph.dockarea.DockArea()
+dock_area = pyqtgraph_back.dockarea.DockArea()
 shared_data.dock_area = dock_area
 '''set the dock_area as fully global in the shared_data singleton'''
 
-flow_chart_dock = pyqtgraph.dockarea.Dock(
+flow_chart_dock = pyqtgraph_back.dockarea.Dock(
     closable=True,
-    size=(100, 1000),
+    size=(100, 800),
     name='flowchart control'
 )
 
@@ -91,16 +92,16 @@ dock_area.addDock(flow_chart_dock)
 
 win.show()
 
-## generate signal data to pass through the flowchart
-data = np.random.normal(size=1000)
-data[200:300] += 1
-data += np.sin(np.linspace(0, 100, 1000))
-data = metaarray.MetaArray(data, info=[
-    {'name': 'Time', 'values': np.linspace(0, 1.0, len(data))},
-    {}])
-
-## Feed data into the input terminal of the flowchart
-fc.setInput(dataIn=data)
+# ## generate signal data to pass through the flowchart
+# data = np.random.normal(size=1000)
+# data[200:300] += 1
+# data += np.sin(np.linspace(0, 100, 1000))
+# data = metaarray.MetaArray(data, info=[
+#     {'name': 'Time', 'values': np.linspace(0, 1.0, len(data))},
+#     {}])
+#
+# ## Feed data into the input terminal of the flowchart
+# fc.setInput(dataIn=data)
 
 ## populate the flowchart with a basic set of processing nodes.
 ## (usually we let the user do this)
@@ -127,14 +128,12 @@ fc.setInput(dataIn=data)
 
 
 ##### lets restore the status of the docks
-dock_area.restoreState(
-    {'main': ('horizontal',
-              [('dock', 'flowchart control', {}),
-               ('dock', 'BananaPlotNode.0', {})],
-              {'sizes': [242, 711]}),
-     'float': []},
-    missing='ignore'
-)
+
 
 if not INTERACTIVE:
-    app.exec_()
+    try:
+        app.exec()
+
+    except:
+        app.exec_()
+
