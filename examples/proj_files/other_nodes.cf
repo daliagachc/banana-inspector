@@ -1,0 +1,32 @@
+main_window: (2, 55, 1676, 993)
+dock_area:
+    main: ('horizontal', [('dock', 'flow-chart', {}), ('vertical', [('dock', 'BananaPlotNodeRegion.0', {}), ('horizontal', [('dock', 'mnk-tool', {}), ('tab', [('dock', 'dummy', {}), ('dock', 'nais_neg_plot', {}), ('dock', 'console', {})], {'index': 1})], {'sizes': [217, 1057]})], {'sizes': [493, 493]})], {'sizes': [388, 1281]})
+    float: []
+flow_chart:
+    pos: (0.0, 0.0)
+    bypass: False
+    terminals:
+        nais_in:
+            io: 'in'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False
+    nodes: [{'class': 'BananaPlotNodeRegion', 'name': 'BananaPlotNodeRegion.0', 'pos': (19.764800000000037, -101.50480000000002), 'state': {'pos': (19.764800000000037, -101.50480000000002), 'bypass': False, 'ctrl': {'type': 'group', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'params', 'value': None, 'default': None, 'children': OrderedDict([('t1', {'type': 'float', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 't1', 'value': 1522487135.4956121, 'default': 1000000000.0}), ('t2', {'type': 'float', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 't2', 'value': 1522558742.9378977, 'default': 2000000000.0}), ('t3', {'type': 'float', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 't3', 'value': 8.0, 'default': 2.0}), ('dock', {'type': 'str', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'dock', 'value': 'BananaPlotNodeRegion.0', 'default': 'BananaPlotNodeRegion'})])}}}, {'class': 'SliceBnnNode', 'name': 'SliceBnnNode.0', 'pos': (80.2448, 15.826400000000035), 'state': {'pos': (80.2448, 15.826400000000035), 'bypass': False, 'ctrl': {'type': 'group', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'params', 'value': None, 'default': None}}}, {'class': 'BananaPlotNodeCut', 'name': 'nais_neg_plot', 'pos': (243.54079999999988, -108.76240000000004), 'state': {'pos': (243.54079999999988, -108.76240000000004), 'bypass': False, 'ctrl': {'type': 'group', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'params', 'value': None, 'default': None, 'children': OrderedDict([('dock', {'type': 'str', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'dock', 'value': 'nais_neg_plot', 'default': 'BananaPlotNodeCut'})])}}}]
+    connects: [('BananaPlotNodeRegion.0', 't2', 'SliceBnnNode.0', 't2'), ('BananaPlotNodeRegion.0', 't1', 'SliceBnnNode.0', 't1'), ('BananaPlotNodeRegion.0', 't1', 'nais_neg_plot', 't1'), ('BananaPlotNodeRegion.0', 't2', 'nais_neg_plot', 't2'), ('Input', 'nais_in', 'BananaPlotNodeRegion.0', 'dataIn'), ('SliceBnnNode.0', 'dataOut', 'nais_neg_plot', 'dataIn'), ('Input', 'nais_in', 'SliceBnnNode.0', 'dataIn')]
+    inputNode:
+        pos: (-150.0, 0.0)
+        bypass: False
+        terminals:
+            nais_in:
+                io: 'out'
+                multi: False
+                optional: False
+                renamable: False
+                removable: False
+                multiable: False
+    outputNode:
+        pos: (300.0, 0.0)
+        bypass: False
+        terminals:

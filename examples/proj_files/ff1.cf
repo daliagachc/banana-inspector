@@ -1,0 +1,32 @@
+main_window: (94, 149, 1517, 800)
+dock_area:
+    main: ('horizontal', [('vertical', [('dock', 'mnk-tool', {}), ('dock', 'flow-chart', {})], {'sizes': [397, 396]}), ('vertical', [('tab', [('dock', 'dummy', {}), ('dock', 'BananaPlotNodeCut.0', {})], {'index': 1}), ('dock', 'console', {})], {'sizes': [201, 592]})], {'sizes': [335, 1175]})
+    float: []
+flow_chart:
+    pos: (0.0, 0.0)
+    bypass: False
+    terminals:
+        nais_in:
+            io: 'in'
+            multi: False
+            optional: False
+            renamable: False
+            removable: False
+            multiable: False
+    nodes: [{'class': 'BananaPlotNodeCut', 'name': 'BananaPlotNodeCut.0', 'pos': (66.93919999999994, -41.02479999999997), 'state': {'pos': (66.93919999999994, -41.02479999999997), 'bypass': False, 'ctrl': {'type': 'group', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'params', 'value': None, 'default': None, 'children': OrderedDict([('dock', {'type': 'str', 'readonly': False, 'visible': True, 'enabled': True, 'renamable': False, 'removable': False, 'strictNaming': False, 'expanded': True, 'syncExpanded': False, 'title': None, 'name': 'dock', 'value': 'BananaPlotNodeCut.0', 'default': 'BananaPlotNodeCut'})])}}}]
+    connects: [('Input', 'nais_in', 'BananaPlotNodeCut.0', 'dataIn')]
+    inputNode:
+        pos: (-150.0, 0.0)
+        bypass: False
+        terminals:
+            nais_in:
+                io: 'out'
+                multi: False
+                optional: False
+                renamable: False
+                removable: False
+                multiable: False
+    outputNode:
+        pos: (300.0, 0.0)
+        bypass: False
+        terminals:
