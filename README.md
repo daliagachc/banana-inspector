@@ -15,6 +15,8 @@ brew install pyqt@5
 conda create -n bnn
 conda activate bnn
 conda install conda-build
-git clone this_github 
+git clone https://github.com/daliagachc/banana-inspector.git
+conda install --file banana-inspector/requirements.txt
+
 
 ```
