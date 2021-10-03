@@ -54,3 +54,7 @@ cd banana-inspector/examples
 # try any of the following 
 python 
 ```
+=======
+![banana-inspector](https://user-images.githubusercontent.com/15239248/135773459-d1e0a308-5cb7-40f1-af52-069ef922c623.gif)
+
+
