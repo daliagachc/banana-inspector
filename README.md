@@ -9,8 +9,30 @@ it is based on pyqtgraph and heavily used the concept of flowchart and nodes des
 it is blazing fast! 
 
 ## installation
-### mac 
+
+### linux
 ```shell
+# depending on your mac you can install PyQt5 directly from conda
+conda create -n bnn
+conda activate bnn
+conda install conda-build
+conda install pip
+
+conda install --file banana-inspector/requirements_mac.txt
+
+#install latest pyqtgraph from github 
+python -m pip install git+https://github.com/pyqtgraph/pyqtgraph.git
+
+
+git clone git+https://github.com/daliagachc/banana-inspector.git
+conda develop banana-inspector
+
+```
+
+
+### mac air with m1 chip 
+```shell
+# depending on your mac you can install PyQt5 directly from conda
 brew install pyqt@5
 conda create -n bnn
 conda activate bnn
@@ -20,6 +42,6 @@ conda develop /opt/homebrew/Cellar/pyqt@5/5.15.4_2/lib/python3.9/site-packages/P
 
 conda install pip
 python -m pip install git+https://github.com/pyqtgraph/pyqtgraph.git
-conda install --file banana-inspector/requirements.txt
+conda install --file banana-inspector/requirements_mac.txt
 
 ```

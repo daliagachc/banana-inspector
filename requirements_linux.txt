@@ -1,0 +1,10 @@
+#pyqtgraph>=0.12.2
+xarray
+matplotlib
+ipython
+numpy
+pandas
+scipy
+setuptools
+pyqt5
+pip

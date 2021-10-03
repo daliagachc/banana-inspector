@@ -90,7 +90,8 @@ main_app = None
 dock_mnk_tool:pyqtgraph.dockarea.DockArea = None
 '''as in monkey_tool this is set up by '''
 
-
+dummy_plot_item_1 = None
+'''dummy plot to hold references to x and y axis'''
 
 
 class connectMasterXY:

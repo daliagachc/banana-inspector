@@ -5,11 +5,11 @@ import pyqtgraph.dockarea
 import xarray as xr
 from pyqtgraph import LinearRegionItem
 from pyqtgraph.Qt import QtCore
-
-from .. import confg
-from .CtrlNodeTree import CtrlNodeTree
-
 from xarray.plot.plot import _infer_interval_breaks as infer_interval_breaks
+
+from .CtrlNodeTree import CtrlNodeTree
+from .. import confg
+
 
 class BananaPlotCut(pg.GraphicsLayoutWidget):
 
@@ -33,29 +33,51 @@ class BananaPlotCut(pg.GraphicsLayoutWidget):
         hist.gradient.loadPreset('viridis')
         hist.setImageItem(image_item)
 
+        # Isocurve drawing
+        iso = pg.IsocurveItem(level=0.8, pen='g')
+        iso.setParentItem(image_item)
+        iso.setZValue(5)
+
+        # Draggable line for setting isocurve level
+        isoLine = pg.InfiniteLine(angle=0, movable=True, pen='g')
+        hist.vb.addItem(isoLine)
+        hist.vb.setMouseEnabled(y=False)  # makes user interaction a little easier
+        isoLine.setValue(2)
+        isoLine.setZValue(1000)  # bring iso line above contrast controls
+
+        plot_item.setXLink(confg.dummy_plot_item_1)
+
+        def updateIsocurve():
+            iso.setLevel(isoLine.value())
+
+        isoLine.sigDragged.connect(updateIsocurve)
+
         self.ci.addItem(hist)
         self.ci.addItem(plot_item)
 
         self.image_item = image_item
         self.plot_item = plot_item
 
+        # noinspection PyTypeChecker
         self.region: LinearRegionItem = None
         self.proxi = None
         self.hist = hist
         self.image_item = image_item
+        self.iso = iso
+        self.isoLine = isoLine
+
+
 
     def set_image_data(self, da):
         d2 = self.check_transpose(da)
-        set_image_data(d2, self.image_item, True)
-
+        self._set_image_data(d2, True)
 
     def set_hist_levels(self, da):
         dn = da.where(da > 0)
-        m, M = dn.quantile([.05, .95])
+        m, M = dn.quantile([.15, .99])
         mm = np.log10(m.item())
         MM = np.log10(M.item())
         self.hist.setLevels(mm, MM)
-
 
     def set_region_ui(self, da, t1=None, t2=None):
         vb = self.plot_item.vb
@@ -65,6 +87,7 @@ class BananaPlotCut(pg.GraphicsLayoutWidget):
         self.plot_item.addItem(hLine, ignoreBounds=True)
         label = pg.LabelItem(justify='right')
         label.setText('')
+        # noinspection PyArgumentList
         self.addItem(label, row=1, col=1)
 
         def mouseMoved(evt):
@@ -106,10 +129,10 @@ class BananaPlotCut(pg.GraphicsLayoutWidget):
     def set_image_data_cut(self, da, t1, t2):
         d_cut = da.loc[{'secs': slice(t1, t2)}]
         d2 = self.check_transpose(d_cut)
-        set_image_data(d2, self.image_item, True)
+        self._set_image_data(d2, True)
 
     @staticmethod
-    def check_transpose(da:xr.DataArray):
+    def check_transpose(da: xr.DataArray):
         order = ('secs', 'lDp')
         if da.dims != order:
             da1 = da.transpose(*order)
@@ -117,22 +140,20 @@ class BananaPlotCut(pg.GraphicsLayoutWidget):
             da1 = da
         return da1
 
+    def _set_image_data(self, da, autoLevels):
+        img: pg.ImageItem = self.image_item
+        d0, d1, t00, t11 = get_darray_bounds(da)
+        da = da.where(da > 1, 1)
+        lda = np.log10(da)
+        # lda = lda.where(lda>0,0)
+        data = lda.values
+        img.setImage(data, autoLevels=autoLevels)
+        width = t11 - t00
+        height = d1 - d0
+        rect = QtCore.QRectF(t00, d0, width, height)
+        img.setRect(rect)
 
-
-
-def set_image_data(da, img: pg.ImageItem, autoLevels):
-    d0, d1, t00, t11 = get_darray_bounds(da)
-    da = da.where(da > 1, 1)
-    lda = np.log10(da)
-    # lda = lda.where(lda>0,0)
-    data = lda.values
-    img.setImage(data, autoLevels=autoLevels)
-    width = t11 - t00
-    height = d1 - d0
-    rect = QtCore.QRectF(t00, d0, width, height)
-    img.setRect(rect)
-
-
+        self.iso.setData(pg.gaussianFilter(data, (2, 2)))
 
 
 def to_sec(date):
@@ -158,9 +179,6 @@ def get_darray_bounds(da: xr.DataArray):
     return d0, d1, t0, t1
 
 
-
-
-
 class BananaPlotNodeCut(CtrlNodeTree):
     """Return the input data passed through an unsharp mask."""
     nodeName = "BananaPlotNodeCut"
@@ -175,24 +193,23 @@ class BananaPlotNodeCut(CtrlNodeTree):
         ## Define the input / output terminals available on this node
         terminals = {
             'dataIn': dict(io='in'),
-            't1': dict(io='in'),
-            't2': dict(io='in'),
+            't1'    : dict(io='in'),
+            't2'    : dict(io='in'),
         }
-
 
         CtrlNodeTree.__init__(self, name, terminals=terminals)
 
         self.dock = None
-        self.bp:BananaPlotCut = None
+        # noinspection PyTypeChecker
+        self.bp: BananaPlotCut = None
 
+    # noinspection PyMethodOverriding
     def process(self, dataIn, t1, t2, display=True):
         # CtrlNode has created self.ctrls, which is a dict containing {ctrlName: widget}
 
         # self.blockSignals(True)
 
         print('entering bnnpltcut')
-
-
 
         dock_area = confg.dock_area
 
@@ -213,14 +230,12 @@ class BananaPlotNodeCut(CtrlNodeTree):
             self.dock = dock
             self.bp = bp
 
-
         self.bp.set_image_data_cut(dataIn, t1, t2)
-            # self.bp.set_region_ui(dataIn, t1, t2)
+        # self.bp.set_region_ui(dataIn, t1, t2)
 
         self.bp.set_hist_levels(da=dataIn)
         self.bp.plot_item.enableAutoRange(axis='x', enable=True)
 
         self.blockSignals(False)
-
 
         return {}

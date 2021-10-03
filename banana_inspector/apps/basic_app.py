@@ -44,3 +44,8 @@ da.addDock(dck_console, position='below', relativeTo=dck_dm)
 
 confg.main_fchart = fc = pg.flowchart.Flowchart()
 dck_fc.addWidget(fc.widget())
+
+
+plot_widget = pg.PlotWidget()
+confg.dummy_plot_item_1 = plot_widget.plotItem
+dck_dm.addWidget(plot_widget)

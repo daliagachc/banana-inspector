@@ -31,8 +31,8 @@ def set_int():
     return INT
 
 
-# INT = set_int()
 INT = False
+INT = set_int()
 
 
 
@@ -57,6 +57,9 @@ p = confg.par_tree
 
 p['project dir'] = './proj_files'
 p['file proj'] = './proj_files/nais_smps.cf'
+
+
+
 
 try:
     mk_tool.open_project()
