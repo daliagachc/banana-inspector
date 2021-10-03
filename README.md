@@ -45,3 +45,12 @@ python -m pip install git+https://github.com/pyqtgraph/pyqtgraph.git
 conda install --file banana-inspector/requirements_mac.txt
 
 ```
+
+## basi usage: 
+
+```shell
+conda activate bnn 
+cd banana-inspector/examples
+# try any of the following 
+python 
+```
