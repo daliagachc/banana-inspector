@@ -209,7 +209,7 @@ class BananaPlotNodeCut(CtrlNodeTree):
 
         # self.blockSignals(True)
 
-        print('entering bnnpltcut')
+        # print('entering bnnpltcut')
 
         dock_area = confg.dock_area
 

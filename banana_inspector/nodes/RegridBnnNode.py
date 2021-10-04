@@ -32,7 +32,7 @@ class RegridBnnNode(CtrlNodeTree):
     nodeName = "RegridBnnNode"
     uiTemplate = [
         {'name': 'n_subs', 'type': 'int', 'value': 11},
-        {'name': 'log_dx', 'type': 'float', 'value': .5},
+        {'name': 'log_dx', 'type': 'float', 'value': .05},
         # {'name': 't2', 'type': 'float', 'value': 2e9},
         # {'name': 't3', 'type': 'float', 'value': 2},
         # {'name': 'dock', 'type': 'str', 'value': 'BnnPlotCut'}

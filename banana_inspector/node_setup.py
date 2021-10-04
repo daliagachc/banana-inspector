@@ -18,6 +18,9 @@ from .nodes.BnnSlicesPlotNode import BnnSlicesPlotNode
 from .nodes.RegridBnnNode import RegridBnnNode
 from .nodes.DeUtcNode import DeUtcNode
 from .nodes.CombineSpectraNode import CombineSpectraNode
+from .nodes.PeelNode_scratch import PeelNode
+from .nodes.GaussianFilterNode import GaussianFilterNode
+from .nodes.QNormFilterNode import QNormFilterNode
 
 from . import confg
 import pyqtgraph.console
@@ -51,6 +54,10 @@ library.addNodeType(    RegridBnnNode           , [(    'Data'      ,)])
 library.addNodeType(    SliceBnnNode            , [(    'Data'      ,)])
 library.addNodeType(    DeUtcNode               , [(    'Data'      ,)])
 library.addNodeType(    CombineSpectraNode      , [(    'Data'      ,)])
+
+library.addNodeType(    PeelNode                , [(    'Peel'      ,)])
+library.addNodeType(    GaussianFilterNode      , [(    'Filter'    ,)])
+library.addNodeType(    QNormFilterNode         , [(    'Filter'    ,)])
 
 # Add the unsharp mask node to two locations in the menu to demonstrate
 # that we can create arbitrary menu structures
