@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/15239248/135803333-d86d1643-6b83-4f9d-801c-b596733318a9.png)
+
+
 the Bnn-inspector is a python gui to analyze atmospheric
 particle size distributions. 
 Its goal are to
