@@ -15,13 +15,12 @@ it is blazing fast!
 
 ### linux
 ```shell
-# depending on your mac you can install PyQt5 directly from conda
 conda create -n bnn
 conda activate bnn
 conda install conda-build
 conda install pip
 
-conda install --file banana-inspector/requirements_mac.txt
+conda install --file banana-inspector/requirements_linux.txt
 
 #install latest pyqtgraph from github 
 python -m pip install git+https://github.com/pyqtgraph/pyqtgraph.git
