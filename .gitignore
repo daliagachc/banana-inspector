@@ -6,3 +6,7 @@ __pycache__
 
 banana_inspector.egg-info
 banana-inspector.iml
+
+banana_inspector_back
+
+src/banana_inspector/data_example/
