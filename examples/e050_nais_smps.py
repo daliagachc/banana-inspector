@@ -43,8 +43,8 @@ import banana_inspector.node_setup
 
 fc = confg.main_fchart
 import xarray as xr
-nais_da = xr.open_dataarray('../banana_inspector/data_example/nais_chc_data.nc')
-smps_da = xr.open_dataarray('../banana_inspector/data_example/smps_chc_data.nc')
+nais_da = xr.open_dataarray('../src/banana_inspector/data_example/nais_chc_data.nc')
+smps_da = xr.open_dataarray('../src/banana_inspector/data_example/smps_chc_data.nc')
 fc.addTerminal('nais_in',**{'io':'in'})
 fc.addTerminal('smps_in',**{'io':'in'})
 fc.setInput(**{'nais_in':nais_da})

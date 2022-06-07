@@ -42,10 +42,10 @@ import banana_inspector.monkey_tool as mk_tool
 import banana_inspector.node_setup
 
 fc = confg.main_fchart
-import xarray as xr
-nais_da = xr.open_dataarray('../banana_inspector/data_example/nais_chc_data.nc')
-fc.addTerminal('nais_in',**{'io':'in'})
-fc.setInput(**{'nais_in':nais_da})
+# import xarray as xr
+# nais_da = xr.open_dataarray('../src/banana_inspector/data_example/nais_chc_data.nc')
+# fc.addTerminal('nais_in',**{'io':'in'})
+# fc.setInput(**{'nais_in':nais_da})
 app.mw.show()
 
 p = confg.par_tree
@@ -55,7 +55,7 @@ p = confg.par_tree
 p['project dir'] = './proj_files'
 p['file proj'] = './proj_files/ff1.cf'
 
-mk_tool.open_project()
+# mk_tool.open_project()
 ###################
 
 if INT is False:

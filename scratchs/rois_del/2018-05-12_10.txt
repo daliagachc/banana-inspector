@@ -1,0 +1,173 @@
+par:
+    type: 'group'
+    readonly: False
+    visible: True
+    enabled: True
+    renamable: False
+    removable: False
+    strictNaming: False
+    expanded: True
+    syncExpanded: False
+    title: None
+    name: 'params'
+    value: None
+    default: None
+    children:
+        id:
+            type: 'str'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'id'
+            value: '2018-05-12_09:00'
+            default: ''
+        q0:
+            type: 'float'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'q0'
+            value: 0.1
+            limits: [0.001, 1]
+            dec: True
+            step: 0.01
+            default: 0.1
+        q1:
+            type: 'float'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'q1'
+            value: 0.2
+            limits: [0.001, 1]
+            dec: True
+            step: 0.01
+            default: 0.2
+        q2:
+            type: 'float'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'q2'
+            value: 0.5
+            limits: [0.001, 1]
+            dec: True
+            step: 0.01
+            default: 0.5
+        save peel:
+            type: 'action'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'save peel'
+            value: None
+            default: None
+        create peel:
+            type: 'action'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'create peel'
+            value: None
+            default: None
+        open peel:
+            type: 'action'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'open peel'
+            value: None
+            default: None
+        project dir:
+            type: 'file'
+            readonly: True
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'project dir'
+            fileMode: 'Directory'
+            value: '/Users/aliaga/py-packs/banana-inspector-parent/banana-inspector/scratchs/rois_del'
+            default: None
+        to open file:
+            type: 'file'
+            readonly: True
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'to open file'
+            fileMode: 'AnyFile'
+            acceptMode: 'AcceptOpen'
+            value: None
+            default: None
+        dock:
+            type: 'str'
+            readonly: False
+            visible: True
+            enabled: True
+            renamable: False
+            removable: False
+            strictNaming: False
+            expanded: True
+            syncExpanded: False
+            title: None
+            name: 'dock'
+            value: 'PeelNode.0'
+            default: 'PeelNode'
+roi:
+    pos: (0.0, 0.0)
+    size: (1.0, 1.0)
+    angle: 0.0
+    closed: True
+    points: [(1526114553.1861556, -9.079333586897581), (1526126032.639602, -9.079333586897583), (1526127709.0188098, -7.738892086406358), (1526124286.941007, -7.701309614429968), (1526120142.9114723, -8.01449688089988)]

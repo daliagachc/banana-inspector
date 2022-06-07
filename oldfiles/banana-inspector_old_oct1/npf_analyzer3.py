@@ -459,7 +459,7 @@ class GuiNpf:
         
         da = self.ip_darray
         
-        sda = fu.gauss_astro( da , x , y )
+        sda = fu.filter(da, x, y)
         
         return sda
     

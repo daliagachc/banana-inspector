@@ -56,7 +56,7 @@ p = confg.par_tree
 
 
 p['project dir'] = './proj_files'
-p['file proj'] = './proj_files/peel_node.cf'
+p['file proj'] = './proj_files/peel_node2.cf'
 
 
 

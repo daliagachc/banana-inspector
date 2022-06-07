@@ -2,8 +2,7 @@
 .ipynb_checkpoints
 .DS_Store
 __pycache__
-
+.idea_back
 
 banana_inspector.egg-info
-
 banana-inspector.iml

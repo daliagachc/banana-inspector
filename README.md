@@ -1,11 +1,10 @@
 ![image](https://user-images.githubusercontent.com/15239248/135803333-d86d1643-6b83-4f9d-801c-b596733318a9.png)
 
 
-the Bnn-inspector is a python gui to analyze atmospheric
-particle size distributions. 
-Its goal are to
+the bnn-inspector [banana-inspector] is a python-based gui to analyze atmospheric particle size distributions. 
+Its goals are to
  - visualize the data interactively 
- - analyze new particle formation events
+ - analyze new particle formation events (NPF)
  
 it is based on pyqtgraph and heavily used the concept of flowchart and nodes described there. 
 
@@ -20,13 +19,13 @@ conda activate bnn
 conda install conda-build
 conda install pip
 
-conda install --file banana-inspector/requirements_linux.txt
 
+git clone git+https://github.com/daliagachc/banana-inspector.git
+conda install --file banana-inspector/requirements_linux.txt
 #install latest pyqtgraph from github 
 python -m pip install git+https://github.com/pyqtgraph/pyqtgraph.git
 
 
-git clone git+https://github.com/daliagachc/banana-inspector.git
 conda develop banana-inspector
 
 ```
